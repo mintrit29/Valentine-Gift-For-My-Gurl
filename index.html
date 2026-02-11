@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nary's Valentine</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Fonts added via CSS import -->
+</head>
+<body>
+
+    <!-- Day/Night Toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle night mode">
+        <span class="toggle-icon">☀️</span>
+    </button>
+
+    <div class="container">
+        <div class="container">
+        <!-- Loading Screen -->
+        <div id="loading-screen">
+            <div class="heart-loader">❤️</div>
+            <p>Loading love...</p>
+        </div>
+
+        <header class="hero-section">
+            <div class="glass-panel header-content">
+                <div class="header-decoration">🌸</div>
+                <h1 class="main-title" id="typing-title"></h1>
+                <p class="subtitle">To my dearest, Nary 💖</p>
+                <div class="header-decoration">🌸</div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Profile Card - Nary (Thorfinn) -->
+                <div class="glass-card profile-card">
+                    <img src="https://media1.tenor.com/m/ftCrp-lVqsMAAAAd/thorfinn-thorfinn-de-sam.gif" alt="Thorfinn">
+                    <div style="text-align: center; margin-top: 10px;">
+                        <h3>Your Fav Char</h3>
+                        <p>Thorfinn</p>
+                    </div>
+                </div>
+
+                <!-- Profile Card - Me (Lain) -->
+                <div class="glass-card profile-card">
+                    <img src="https://media1.tenor.com/m/NHHsRkxsG9sAAAAd/lain-glitchcore.gif" alt="Lain">
+                    <div style="text-align: center; margin-top: 10px;">
+                        <h3>My Fav Char</h3>
+                        <p>Lain</p>
+                    </div>
+                </div>
+
+                <!-- Love Timer -->
+                <div class="glass-card">
+                    <h3 style="text-align: center; margin-bottom: 10px;">We've been together</h3>
+                    <div class="love-timer">
+                        <div class="timer-box">
+                            <span class="timer-value" id="days">0</span>
+                            <span class="timer-label">Days</span>
+                        </div>
+                        <div class="timer-box">
+                            <span class="timer-value" id="hours">0</span>
+                            <span class="timer-label">Hours</span>
+                        </div>
+                        <div class="timer-box">
+                            <span class="timer-value" id="minutes">0</span>
+                            <span class="timer-label">Mins</span>
+                        </div>
+                        <div class="timer-box">
+                            <span class="timer-value" id="seconds">0</span>
+                            <span class="timer-label">Secs</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 10px; font-size: 0.8em; opacity: 0.8;">Since Dec 14</p>
+                </div>
+
+                <!-- Valentine To-Do List -->
+                <div class="glass-card todo-list">
+                    <h3 style="text-align: center; margin-bottom: 15px;">Valentine's To-Do</h3>
+                    <ul>
+                        <li class="todo-item">🍫 Eat Chocolate</li>
+                        <li class="todo-item">🎬 Watch a Movie</li>
+                        <li class="todo-item">🎁 Received Love Messages</li>
+                        <li class="todo-item">🥰 Be Happy</li>
+                    </ul>
+                </div>
+
+                <!-- Music Player (Advanced) -->
+                <div class="glass-card music-player" id="musicPlayerContainer">
+                    <div class="music-info">
+                        <h4 id="title">Glue Song</h4>
+                        <p id="artist">Beabadoobee</p>
+                    </div>
+
+                    <div class="img-container">
+                        <img src="https://media.tenor.com/ZB9kXOjfhasAAAAi/cat-kitty.gif" alt="music-cover" id="cover">
+                    </div>
+
+                    <div class="navigation">
+                        <button id="prev" class="action-btn">
+                            <i>⏮</i>
+                        </button>
+                        <button id="play" class="action-btn action-btn-big">
+                            <i>▶</i>
+                        </button>
+                        <button id="next" class="action-btn">
+                            <i>⏭</i>
+                        </button>
+                    </div>
+                    
+                    <div class="progress-container" id="progress-container">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                    
+                    <div class="time-display">
+                        <span id="currTime">0:00</span>
+                        <span id="durTime">0:00</span>
+                    </div>
+
+                    <audio id="audio" src="audio/Beabadoobee-Glue-Song.mp3"></audio>
+                </div>
+            </aside>
+
+            <!-- Library/Gallery Section -->
+            <main class="gallery-section">
+                <!-- Intro GIF -->
+                <div class="glass-panel" style="text-align: center; padding: 20px; margin-bottom: 30px;">
+                    <h2>✨ Welcome to Vinland Em iuu... ✨</h2>
+                    <img src="images/edbcbc11-3784-424f-8c00-3649f21ec024.png" style="max-width: 100%; margin-top: 15px; border-radius: 10px;">
+                    <p style="margin-top: 15px; font-size: 1.1em;">
+                        Just wander around and take it easy...
+                    </p>
+                    <!-- Reasons Button -->
+                     <button id="reasonBtn" class="reason-btn" style="margin-top: 20px;">Why I Love You? 💖</button>
+                </div>
+
+                <!-- Open When Letters -->
+                <div style="margin-bottom: 15px;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">💌 Open When...</h3>
+                    <div class="letters-grid">
+                        <div class="letter-envelope" onclick="openLetter('sad')">
+                            <span class="letter-title">You're Sad</span>
+                        </div>
+                        <div class="letter-envelope" onclick="openLetter('miss')">
+                            <span class="letter-title">You Miss Me</span>
+                        </div>
+                        <div class="letter-envelope" onclick="openLetter('now')">
+                            <span class="letter-title">Right Now</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collapsible Cat Gallery -->
+                <div style="margin-bottom: 30px; margin-top: 0;">
+                    <button type="button" class="collapsible-trigger">
+                        Scroll for My Cat Photos 🐱 ▼
+                    </button>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner glass-panel">
+                            <img src="images/Cat.jpg" alt="Cat 1">
+                            <img src="images/Cat (1).jpg" alt="Cat 2">
+                            <img src="images/Cat (2).jpg" alt="Cat 3">
+                            <img src="images/Cat (3).jpg" alt="Cat 4">
+                            <img src="images/Cat (4).jpg" alt="Cat 5">
+                            <img src="images/Cat (5).jpg" alt="Cat 6">
+                            <img src="images/Cat (6).jpg" alt="Cat 7">
+                            <img src="images/Cat (7).jpg" alt="Cat 8">
+                            <img src="images/Cat (8).jpg" alt="Cat 9">
+                            <img src="images/Cat (9).jpg" alt="Cat 10">
+                            <img src="images/Cat (10).jpg" alt="Cat 11">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Main Gallery -->
+                <div class="gallery-grid">
+                    <div class="gallery-item glass-card">
+                        <img src="images/61539261-b64d-4cc1-b6a4-08074fca8ee6.jpg" alt="Just drinking">
+                        <div class="gallery-overlay">Just drinking<br>‧₊ ᵎᵎ 🍒 ⋅ ˚✮</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/a58e382d-7aad-4c30-9e26-cb235ec09431.jpg" alt="Coolkid">
+                        <div class="gallery-overlay">Coolkid<br>✩°𓏲⋆🌿. ⋆⸜ 🍵</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/b361a800-951c-4962-bc47-b468b4fd4ca2.jpg" alt="Cool outfit">
+                        <div class="gallery-overlay">Cool outfit<br>˚˖𓍢🌷✧˚.🎀⋆</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                         <img src="images/debee475-90c3-4f91-846d-37c06e2a5601.jpg" alt="Pretty girl">
+                        <div class="gallery-overlay">Pretty girl °❀⋆.ೃ࿔*:･</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/e59b3861-ef33-4af5-82cc-136374589b89.jpg" alt="Tsunami bike">
+                        <div class="gallery-overlay">Tsunami bike<br>ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/fb06d4fe-3765-4144-83eb-1250eaa61481.jpg" alt="Favorite draw">
+                        <div class="gallery-overlay">My favorite draw<br>( ˶˘ ³˘)♡</div>
+                    </div>
+                    <!-- New Images -->
+                    <div class="gallery-item glass-card">
+                        <img src="images/1000002277.png" alt="Sweet Moment">
+                        <div class="gallery-overlay">Aww so cute 💖<br>ʕ•́ᴥ•̀ʔっ ♡</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                         <img src="images/1000002297.jpg" alt="Us together">
+                        <div class="gallery-overlay">Look tuff 🌸<br>🔥😎✨</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/1000002368.png" alt="Precious Memory">
+                        <div class="gallery-overlay">My Sora Kasugano :3<br>🤍🐇❄️</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/1000002534.jpg" alt="Lovely Day">
+                        <div class="gallery-overlay">Blink blink...<br>✨👀💫</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/1000002535.jpg" alt="My Favorite View">
+                         <div class="gallery-overlay">Cutiest smile 🥰<br>(◕‿◕)💕</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/1000002536.jpg" alt="Holding Hands">
+                        <div class="gallery-overlay">You look amazing! 🤝<br>🌹💃✨</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/1000002540.jpg" alt="Silly Times">
+                        <div class="gallery-overlay">Gorgeous <br>👑💎💅</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/1000002541.jpg" alt="Just you & me">
+                        <div class="gallery-overlay">So sweet, I wanna kiss you<br>💋😽🍭</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                         <img src="images/1000002543.jpg" alt="Forever & Always">
+                        <div class="gallery-overlay">Marry me mommy 💍<br>💒👰‍♀️💖</div>
+                    </div>
+                    <div class="gallery-item glass-card">
+                        <img src="images/1000002669.png" alt="Best Date Ever">
+                        <div class="gallery-overlay">My angel<br>ʚɞ 👼🪽✨</div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Guestbook -->
+                <div class="glass-panel" style="margin-top: 30px; padding: 20px;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">Guestbook</h3>
+                    <div class="giscus"></div>
+                </div>
+
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="glass-panel" style="display: inline-block; padding: 10px 30px;">
+                <p>Happy Valentine's Day! ₊˚⊹♡🍰🍓♡⊹˚₊</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-button" onclick="closeModal('imageModal')">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Letter Modal -->
+    <div id="letterModal" class="modal">
+        <span class="close-button" onclick="closeModal('letterModal')">&times;</span>
+        <div class="modal-content letter-content" id="letterText">
+            <!-- Content will be injected here -->
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"></div>
+
+    <script src="js/script.js"></script>
+    <script src="https://giscus.app/client.js"
+        data-repo="mintrit29/wekii4funk"
+        data-repo-id="R_kgDOQUEeRw"
+        data-category="Comments"
+        data-category-id="DIC_kwDOQUEeR84Cx7u-"
+        data-mapping="number"
+        data-term="1"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+    </script>
+</body>
+</html>

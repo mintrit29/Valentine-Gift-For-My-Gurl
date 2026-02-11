@@ -1,0 +1,46 @@
+/* Letter Modal Content */
+.letter-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  overflow-y: auto;
+  text-align: center;
+  color: var(--text-color);
+  font-family: 'Nunito', sans-serif;
+  border: 1px solid var(--primary-color);
+  /* Scrollbar styling for webkit */
+}
+
+.letter-content h2 {
+    margin-top: 0;
+    color: var(--accent-color);
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.letter-content p {
+    font-size: 1.6rem; 
+    line-height: 1.6;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600; /* Dancing Script looks better with weight */
+}
+
+/* Custom scrollbar for letter content */
+.letter-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.letter-content::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 10px;
+}
+ 
+.letter-content::-webkit-scrollbar-thumb {
+  background: var(--primary-color); 
+  border-radius: 10px;
+}
+
+.letter-content::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color); 
+}
