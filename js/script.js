@@ -4,11 +4,58 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // Loading Screen
   const loader = document.getElementById("loading-screen");
+  const questionScreen = document.getElementById("love-question-screen");
+  const mainContent = document.querySelector(".hero-section"); // Just select hero to hide initially? No, let's hide via CSS or just overlay
+  
+  // Initially hide main content logic via the question screen overlaying it
+  
   if(loader) {
     setTimeout(() => {
         loader.style.opacity = "0";
-        setTimeout(() => { loader.style.display = "none"; }, 500);
-    }, 1500); // Fake load time
+        setTimeout(() => { 
+            loader.style.display = "none"; 
+            // Question screen is already visible underneath
+        }, 500);
+    }, 1500); 
+  }
+
+  // Love Question Logic
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+
+  if (yesBtn) {
+      yesBtn.addEventListener("click", () => {
+          // Success!
+          if (questionScreen) {
+              questionScreen.style.opacity = "0";
+              setTimeout(() => {
+                  questionScreen.style.display = "none";
+                  // Start Typing Effect NOW
+                  typeWriter();
+              }, 500);
+          }
+      });
+  }
+
+  if (noBtn) {
+      // Run away logic
+      const moveNoBtn = () => {
+          const container = document.querySelector(".question-container");
+          if (!container) return;
+          
+          // Get container dimensions to keep button somewhat near, or just viewport
+          // Let's use viewport for chaos
+          const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+          const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+          
+          noBtn.style.position = "fixed"; // Break out of flow completely
+          noBtn.style.left = `${x}px`;
+          noBtn.style.top = `${y}px`;
+      };
+
+      noBtn.addEventListener("mouseover", moveNoBtn);
+      noBtn.addEventListener("click", moveNoBtn); // For mobile/fast clicks
+      noBtn.addEventListener("touchstart", moveNoBtn); // Mobile touch
   }
 
   // Typing Effect
@@ -23,8 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(typeWriter, 150);
     }
   }
-  // Start typing after loader fades (approx 2s)
-  setTimeout(typeWriter, 2000);
+  // Removed auto-start typing, triggered by Yes button now
+
 
   // Dynamic Title
   let docTitle = document.title;
@@ -367,8 +414,38 @@ document.addEventListener("DOMContentLoaded", function () {
 const letters = {
     'sad': "<h2>When You're Sad...</h2><p>Remember that it's okay not to be okay. Even Thorfinn had his dark days. I'm always here to listen, to hold your hand, or just sit in silence with you. You are loved more than you know. 🌧️🌈</p>",
     'miss': "<h2>When You Miss Me...</h2><p>How lucky I am to have something that makes saying goodbye so hard. Remember that distance means so little when someone means so much. I'll be there by your side before you know it. Sending you a virtual hug! 🤗💖</p>",
-    'now': "<h2>Open Right Now!</h2><p>STOP! Look at yourself in the mirror. You are beautiful, you are capable, and you are amazing. Have a wonderful Valentine's Day! Go eat some chocolate! 🍫😘</p>"
+    'now': "<h2>Open Right Now!</h2><p>STOP! Look at yourself in the mirror. You are beautiful, you are capable, and you are amazing. Have a wonderful Valentine's Day! Go eat some chocolate! 🍫😘</p>",
+    'badFriends': "<h2>When You Encounter Bad Friends...</h2><p>People come and go, but your worth stays. Don't let their toxicity dim your light. You have a heart of gold, and those who don't see it don't deserve a place in it. <br><br>Remember, Thorfinn said: <i>\"I have no enemies.\"</i> Be kind, but protect your peace. I'm always on your team. 🛡️❤️</p>"
 };
+
+// ... existing openLetter/closeModal ...
+
+// === 9. VENT BOX LOGIC ===
+const burnBtn = document.getElementById("burnBtn");
+if (burnBtn) {
+    burnBtn.addEventListener("click", () => {
+        const input = document.getElementById("ventText");
+        if (input.value.trim() !== "") {
+            input.classList.add("burning");
+            
+            // Wait for animation to finish
+            setTimeout(() => {
+                input.value = "";
+                input.classList.remove("burning");
+                
+                // Show toast
+                const toast = document.getElementById("toast");
+                if(toast) {
+                    toast.innerText = "Negative vibes incinerated! 🔥✨";
+                    toast.className = "show";
+                    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+                }
+            }, 1500); // Matches animation duration
+        } else {
+            alert("Write something to burn first! 😠");
+        }
+    });
+}
 
 function openLetter(type) {
     const modal = document.getElementById("letterModal");

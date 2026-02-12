@@ -22,6 +22,23 @@
             <p>Loading love...</p>
         </div>
 
+        <!-- "Do you love me?" Screen (visible by default, under loader z-index) -->
+        <div id="love-question-screen">
+            <div class="floating-hearts-bg">
+                <span>💕</span><span>💗</span><span>💖</span><span>💘</span><span>💝</span>
+                <span>💕</span><span>💗</span><span>💖</span><span>💘</span><span>💝</span>
+            </div>
+            <div class="question-container">
+                <img src="https://media.tenor.com/xWXYanIR85sAAAAj/vampurr.gif" alt="Cute begging cat" class="cute-gif">
+                <p class="sparkle-text">✨ I have a question for you... ✨</p>
+                <h2 class="love-question">Do you love me? 🥺</h2>
+                <div class="love-buttons">
+                    <button id="yesBtn" class="love-btn yes-btn">Yes! 💖</button>
+                    <button id="noBtn" class="love-btn no-btn">No 💔</button>
+                </div>
+            </div>
+        </div>
+
         <header class="hero-section">
             <div class="glass-panel header-content">
                 <div class="header-decoration">🌸</div>
@@ -149,7 +166,18 @@
                         <div class="letter-envelope" onclick="openLetter('now')">
                             <span class="letter-title">Right Now</span>
                         </div>
+                        <div class="letter-envelope" onclick="openLetter('badFriends')">
+                            <span class="letter-title">Bad Friends?</span>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Vent Box (Hộp Trút Giận) -->
+                <div class="glass-panel vent-box-section" style="margin-bottom: 30px; padding: 20px; text-align: center;">
+                    <h3>🔥 Vent Box 🔥</h3>
+                    <p style="margin-bottom: 15px; opacity: 0.8;">Write down what makes you upset, then burn it away...</p>
+                    <textarea id="ventText" class="vent-input" placeholder="Type your frustrations here..."></textarea>
+                    <button id="burnBtn" class="burn-btn">Burn It away! 🔥</button>
                 </div>
 
                 <!-- Collapsible Cat Gallery -->
