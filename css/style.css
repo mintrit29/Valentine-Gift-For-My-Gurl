@@ -1051,4 +1051,31 @@ body.night-mode .no-btn {
   .toggle-icon {
     font-size: 1.3rem;
   }
+
+  /* Love Question Screen - Mobile */
+  .cute-gif {
+    max-width: 160px;
+  }
+
+  .sparkle-text {
+    font-size: 1.1rem;
+  }
+
+  .love-question {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+
+  .love-btn {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+  }
+
+  .love-buttons {
+    min-height: 80px;
+  }
+
+  .no-btn {
+    left: calc(50% + 60px);
+  }
 }
