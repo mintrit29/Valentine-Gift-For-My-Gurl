@@ -1,0 +1,172 @@
+/* Pop Game Overlay */
+.pop-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000; /* Top most */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    /* backdrop-filter: blur(5px); Removed for performance */
+}
+
+.pop-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s;
+}
+
+/* Grid for Bubbles */
+.pop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 15px;
+    width: 90%;
+    max-width: 800px;
+    height: 70vh;
+    overflow-y: auto; /* Allow scrolling if too many */
+    padding: 20px;
+    /* Hide scrollbar */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+.pop-grid::-webkit-scrollbar { 
+    display: none; 
+}
+
+/* Bubble/Heart Element */
+.pop-item {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #ff9a9e, #fad0c4);
+    border-radius: 50%;
+    /* Simplified shadow */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    transition: transform 0.1s;
+    user-select: none;
+    animation: floatBubble 3s ease-in-out infinite alternate;
+}
+
+/* Popped state - keeps layout space but invisible */
+.pop-item.popped {
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0);
+    transition: transform 0.2s, visibility 0s 0.2s;
+}
+
+.pop-item:active {
+    transform: scale(0.9);
+}
+
+.pop-item::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    filter: blur(2px);
+}
+
+@keyframes floatBubble {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+/* Explosion Particles */
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #ff4d6d;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: explode 0.6s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Controls */
+.pop-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.pop-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.pop-btn-exit {
+    background: #ff4d6d;
+    color: white;
+}
+
+.pop-btn-refill {
+    background: #4cc9f0;
+    color: white;
+}
+
+.pop-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.pop-btn:active {
+    transform: scale(0.95);
+}
+
+/* Sidebar Button Specifics */
+.stress-btn {
+    background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    color: #590d22;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.stress-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}

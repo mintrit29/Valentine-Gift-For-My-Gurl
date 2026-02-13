@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function startHearts() {
     if (!heartInterval) {
-      heartInterval = setInterval(createHeart, 300);
+      heartInterval = setInterval(createHeart, 600);
     }
   }
   function stopHearts() {
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // === 2.5 STAR EFFECT (Night Mode) ===
   let stars = [];
   function createStars() {
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 40; i++) {
       const star = document.createElement("div");
       star.classList.add("star");
       star.style.left = Math.random() * 100 + "vw";
@@ -399,12 +399,26 @@ document.addEventListener("DOMContentLoaded", function () {
   const reasonBtn = document.getElementById("reasonBtn");
   const toast = document.getElementById("toast");
 
+  let toastTimeout;
   if(reasonBtn) {
       reasonBtn.addEventListener("click", () => {
           const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
           toast.innerText = randomReason;
-          toast.className = "show";
-          setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+          
+          // Clear existing timeout if any
+          if (toastTimeout) {
+            clearTimeout(toastTimeout);
+          }
+
+          // Reset class to restart animation
+          toast.classList.remove("show");
+          void toast.offsetWidth; // Trigger reflow
+          
+          toast.classList.add("show");
+          
+          toastTimeout = setTimeout(function(){ 
+            toast.classList.remove("show"); 
+          }, 3000);
       });
   }
 
