@@ -148,25 +148,50 @@
 }
 
 /* Sidebar Button Specifics */
+/* Floating Bear Icon Button */
 .stress-btn {
-    background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-    color: #590d22;
-    border: none;
-    padding: 15px;
-    border-radius: 15px;
-    font-weight: bold;
+    position: fixed;
+    bottom: 20px; /* Align vertical spacing too */
+    right: 20px;  /* Match theme toggle right alignment */
+    width: 56px;  /* Match theme toggle size */
+    height: 56px; /* Match theme toggle size */
+    border-radius: 50%;
+    background: #ff9a9e;
+    border: 4px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     cursor: pointer;
-    margin-top: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    z-index: 999;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 8px;
-    width: 100%;
+    align-items: center;
+    font-size: 28px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: bounce 2s infinite;
+}
+
+.stress-btn span {
+    display: block;
+    line-height: 1;
 }
 
 .stress-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Mobile Alignment */
+@media (max-width: 768px) {
+    .stress-btn {
+        width: 46px;
+        height: 46px;
+        right: 12px;
+        bottom: 12px;
+        font-size: 22px;
+        border-width: 3px;
+    }
 }

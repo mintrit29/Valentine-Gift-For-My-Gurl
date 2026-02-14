@@ -874,6 +874,11 @@ body.night-mode .vent-input:focus {
 }
 
 /* Floating Hearts Background */
+/* Floating Hearts Background - Optimized (Removed for performance) */
+.floating-hearts-bg {
+    display: none;
+}
+/* 
 .floating-hearts-bg {
     position: absolute;
     top: 0;
@@ -891,24 +896,8 @@ body.night-mode .vent-input:focus {
     animation: floatUp 6s ease-in infinite;
     opacity: 0.6;
 }
-
-.floating-hearts-bg span:nth-child(1)  { left: 5%;  animation-delay: 0s;   font-size: 1.5rem; }
-.floating-hearts-bg span:nth-child(2)  { left: 15%; animation-delay: 1s;   font-size: 2.5rem; }
-.floating-hearts-bg span:nth-child(3)  { left: 25%; animation-delay: 0.5s; font-size: 1.8rem; }
-.floating-hearts-bg span:nth-child(4)  { left: 40%; animation-delay: 2s;   font-size: 2rem;   }
-.floating-hearts-bg span:nth-child(5)  { left: 55%; animation-delay: 1.5s; font-size: 3rem;   }
-.floating-hearts-bg span:nth-child(6)  { left: 65%; animation-delay: 0.8s; font-size: 1.5rem; }
-.floating-hearts-bg span:nth-child(7)  { left: 75%; animation-delay: 2.5s; font-size: 2.2rem; }
-.floating-hearts-bg span:nth-child(8)  { left: 85%; animation-delay: 0.3s; font-size: 1.8rem; }
-.floating-hearts-bg span:nth-child(9)  { left: 92%; animation-delay: 1.8s; font-size: 2.5rem; }
-.floating-hearts-bg span:nth-child(10) { left: 50%; animation-delay: 3s;   font-size: 2rem;   }
-
-@keyframes floatUp {
-    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
-    10%  { opacity: 0.6; }
-    90%  { opacity: 0.6; }
-    100% { transform: translateY(-110vh) rotate(720deg); opacity: 0; }
-}
+... keyframes floatUp ...
+*/
 
 .question-container {
     max-width: 90%;
@@ -970,8 +959,8 @@ body.night-mode .vent-input:focus {
 }
 
 @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3); transform: scale(1); }
-    50%      { box-shadow: 0 10px 40px rgba(255, 77, 109, 0.6); transform: scale(1.05); }
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
 }
 
 .yes-btn:hover {
@@ -1008,8 +997,8 @@ body.night-mode .yes-btn {
 }
 
 @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3); transform: scale(1); }
-    50%      { box-shadow: 0 10px 40px rgba(155, 89, 182, 0.6); transform: scale(1.05); }
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
 }
 
 body.night-mode .no-btn {
@@ -1077,5 +1066,43 @@ body.night-mode .no-btn {
 
   .no-btn {
     left: calc(50% + 60px);
+  }
+
+  /* Optimize Mobile Performance: Disable Hovers & Show Text */
+  .gallery-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    /* Revert to original red gradient */
+    background: linear-gradient(to top, rgba(255, 77, 109, 0.9), transparent); 
+  }
+
+  .gallery-item:hover img {
+    transform: none;
+  }
+
+  .glass-card:hover {
+    transform: none;
+    box-shadow: none; /* Or keep default shadow */
+    background: rgba(255, 255, 255, 0.4); /* Reset to default light mode bg */
+  }
+
+  /* Night Mode specific overrides for mobile to prevent hover flash */
+  body.night-mode .glass-card:hover {
+      background: rgba(255, 255, 255, 0.08); /* Reset to default night mode bg */
+      box-shadow: none;
+  }
+
+  body.night-mode .collapsible-trigger:hover,
+  body.night-mode .reason-btn:hover {
+      background: #9b59b6; /* Reset to default night mode button color */
+      transform: none;
+      box-shadow: none;
+  }
+
+  /* Reset other hover transfroms */
+  .todo-item:hover, 
+  .collapsible-trigger:hover, 
+  .letter-envelope:hover {
+      transform: none;
   }
 }
