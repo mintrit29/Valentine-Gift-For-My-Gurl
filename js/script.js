@@ -131,7 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function startHearts() {
     if (!heartInterval) {
-      heartInterval = setInterval(createHeart, 600);
+      // Mobile optimization: Less frequent hearts
+      const interval = window.innerWidth < 768 ? 1500 : 800; // Increased desktop interval slightly for perf
+      heartInterval = setInterval(createHeart, interval);
     }
   }
   function stopHearts() {
@@ -146,7 +148,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // === 2.5 STAR EFFECT (Night Mode) ===
   let stars = [];
   function createStars() {
-    for (let i = 0; i < 40; i++) {
+    // Mobile optimization: Fewer stars
+    const starCount = window.innerWidth < 768 ? 20 : 40;
+    
+    for (let i = 0; i < starCount; i++) {
       const star = document.createElement("div");
       star.classList.add("star");
       star.style.left = Math.random() * 100 + "vw";

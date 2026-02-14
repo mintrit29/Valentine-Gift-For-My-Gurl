@@ -110,8 +110,9 @@ a {
   justify-content: center;
   background: rgba(255, 255, 255, 0.45); /* Slightly more opaque */
   border: 2px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
+  box-shadow: 0 10px 25px rgba(255, 77, 109, 0.15); /* Slightly reduced shadow */
   animation: float 6s ease-in-out infinite;
+  will-change: transform; /* Optimize animation */
 }
 
 .main-title {
@@ -168,6 +169,7 @@ a {
   min-width: 100px;
   border: 1px solid var(--glass-border);
   animation: float 3s ease-in-out infinite;
+  will-change: transform;
 }
 
 .timer-box:nth-child(2) { animation-delay: 0.5s; }
@@ -652,7 +654,7 @@ body.night-mode h6 {
 body.night-mode .glass-panel {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* Optimized shadow */
 }
 
 body.night-mode .glass-card {
@@ -662,7 +664,7 @@ body.night-mode .glass-card {
 
 body.night-mode .glass-card:hover {
   background: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 10px 40px rgba(155, 89, 182, 0.3);
+  box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3); /* Optimized shadow */
 }
 
 /* Toggle Button in Night Mode */
@@ -790,6 +792,7 @@ body.night-mode .heart {
   z-index: 998;
   animation: twinkle ease-in-out infinite;
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  will-change: transform, opacity; /* Optimize star animation */
 }
 
 @keyframes twinkle {
@@ -1104,5 +1107,23 @@ body.night-mode .no-btn {
   .collapsible-trigger:hover, 
   .letter-envelope:hover {
       transform: none;
+  }
+
+  /* --- AGGRESSIVE PERFORMANCE OPTIMIZATIONS --- */
+  
+  /* Disable Blur Effects (Very expensive on mobile) */
+  .glass-panel, .glass-card, .modal, .theme-toggle, .pop-overlay {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+  }
+
+  /* Disable Continuous Animations */
+  .header-content, .cute-gif, .timer-box, .header-decoration {
+      animation: none !important;
+  }
+  
+  /* Simplify Shadows */
+  .glass-panel, .header-content {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
   }
 }
