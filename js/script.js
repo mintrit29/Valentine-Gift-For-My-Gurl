@@ -351,36 +351,52 @@ document.addEventListener("DOMContentLoaded", function () {
   if(progressContainer) progressContainer.addEventListener('click', setProgress);
 
 
-  // === 4. IMAGE MODAL & COLLAPSIBLE ===
+  // === 4. IMAGE MODAL & GALLERY TAB FILTER ===
   const modal = document.getElementById("imageModal");
   const modalImg = document.getElementById("modalImage");
   
-  // Update selector to include collapsible images
-  const allImages = document.querySelectorAll(".gallery-item img, .collapsible-inner img");
+  const allImages = document.querySelectorAll(".gallery-item img");
 
+  // Lazy load all gallery images for better performance
   allImages.forEach((img) => {
+    img.setAttribute('loading', 'lazy');
     img.addEventListener("click", function () {
       modal.style.display = "block";
       modalImg.src = this.src;
     });
   });
-  
-  // Collapsible Logic
-  const collapsibleBtn = document.querySelector(".collapsible-trigger");
-  if (collapsibleBtn) {
-    collapsibleBtn.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-        
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-            this.innerText = "Scroll for My Cat Photos 🐱 ▼";
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            this.innerText = "Show Less ▲";
-        }
+
+  // Tab Filter Logic (optimized)
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button immediately (no delay needed)
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+
+      // Batch DOM reads before writes, use rAF to avoid layout thrashing
+      requestAnimationFrame(() => {
+        galleryItems.forEach(item => {
+          const match = filter === 'all' || item.dataset.category === filter;
+
+          if (match) {
+            item.classList.remove('hidden');
+            // Trigger fade-in animation
+            item.classList.remove('appearing');
+            void item.offsetWidth; // force reflow to restart animation
+            item.classList.add('appearing');
+          } else {
+            item.classList.remove('appearing');
+            item.classList.add('hidden');
+          }
+        });
+      });
     });
-  }
+  });
 
   // === 6. TO-DO LIST ===
   const todoItems = document.querySelectorAll(".todo-item");
