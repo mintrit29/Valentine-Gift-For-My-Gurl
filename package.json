@@ -1,0 +1,14 @@
+{
+  "name": "valentine-gift-backup",
+  "version": "1.0.0",
+  "description": "Local backup tool for ImgBB images from Firebase",
+  "main": "backup_tool.js",
+  "scripts": {
+    "backup": "node backup_tool.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5",
+    "firebase": "^10.8.0"
+  }
+}

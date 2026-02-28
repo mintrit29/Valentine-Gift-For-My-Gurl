@@ -173,6 +173,21 @@
                     </div>
                 </div>
 
+                <!-- Add New Letter Section -->
+                <div class="glass-panel" style="margin-bottom: 30px; padding: 20px; text-align: center;">
+                    <h3>Send a New Letter ✍️💌</h3>
+                    <p style="margin-bottom: 15px; font-size: 0.9em; opacity: 0.8;">Leave a message for the future ~</p>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <input type="text" id="letterTitle" class="vent-input" placeholder="Open When... (Title) ✨" style="padding: 12px; height: 50px; width: 80%; max-width: 400px; font-weight: bold; border-radius: 10px;" maxlength="40" />
+                        <textarea id="letterContent" class="vent-input" placeholder="Type your letter here..." style="height: 120px; width: 80%; max-width: 400px;"></textarea>
+                        
+                        <button id="submitLetterBtn" class="reason-btn" style="margin-top: 10px; background: linear-gradient(45deg, #ff4d6d, #ff758c);">Seal & Send 💌</button>
+                    </div>
+                    
+                    <div id="letterStatus" style="margin-top: 15px; font-weight: bold;"></div>
+                </div>
+
                 <!-- Pop Stress Button -->
                 <!-- Pop Stress Button (Floating Bear) -->
                 <button id="popStressBtn" class="stress-btn" title="Pop the Stress!">
@@ -187,13 +202,34 @@
                     <button id="burnBtn" class="burn-btn">Burn It away! 🔥</button>
                 </div>
 
+                <!-- Add New Image Section (For GF) -->
+                <div class="glass-panel" style="margin-bottom: 30px; padding: 20px; text-align: center;">
+                    <h3>Add New Memory My Love 💖</h3>
+                    <p style="margin-bottom: 15px; font-size: 0.9em; opacity: 0.8;">Unlimited storage, remember to upload at least one pic every day~</p>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;" />
+                        <label for="imageInput" class="vent-input" style="padding: 12px; width: 80%; max-width: 300px; color: #ff4d6d; font-weight: bold; cursor: pointer; border-radius: 10px; background: rgba(255, 255, 255, 0.8); border: 2px dashed rgba(255,77,109,0.5); display: flex; justify-content: center; align-items: center; transition: 0.3s; margin: 0;">
+                            <span id="fileNameDisplay">Choose a Photo 📸</span>
+                        </label>
 
-
-
+                        <input type="text" id="imageCaption" class="vent-input" placeholder="Type a cute caption... ✨" style="padding: 12px; width: 80%; max-width: 300px; color: #ff4d6d; font-weight: bold; border-radius: 10px; background: rgba(255, 255, 255, 0.9); border: none; outline: none; margin: 0;" maxlength="60" />
+                        
+                        <select id="categorySelect" class="vent-input" style="padding: 12px; width: 80%; max-width: 300px; color: #ff4d6d; font-weight: bold; cursor: pointer; border-radius: 10px; background: rgba(255, 255, 255, 0.9); border: none; outline: none; margin: 0;">
+                            <option value="gf">Nary's Corner 💖</option>
+                            <option value="cat">My Cat 🐱</option>
+                            <option value="art">Art & Pusheen 🎨</option>
+                        </select>
+                        
+                        <button id="uploadBtn" class="reason-btn" style="margin-top: 10px; background: linear-gradient(45deg, #ff4d6d, #ff758c);">Upload to Gallery ✨</button>
+                    </div>
+                    
+                    <div id="uploadStatus" style="margin-top: 15px; font-weight: bold;"></div>
+                </div>
 
                 <!-- Gallery Tabs -->
                 <div class="gallery-tabs">
-                    <button class="tab-btn active" data-filter="all">🌸 Tất cả</button>
+                    <button class="tab-btn active" data-filter="all">🌸 All Photos</button>
                     <button class="tab-btn" data-filter="gf">💖 My GF</button>
                     <button class="tab-btn" data-filter="cat">🐱 My Cat</button>
                     <button class="tab-btn" data-filter="art">🎨 Art & Pusheen</button>
@@ -456,6 +492,11 @@
                     </div>
                 </div>
 
+                <!-- Load More Button -->
+                <div style="text-align: center; margin-top: 20px;">
+                    <button id="loadMoreBtn" class="reason-btn hidden" style="background: linear-gradient(45deg, #ff4d6d, #ff758c); padding: 10px 30px; font-size: 1rem;">Show More 🌸</button>
+                </div>
+
                 <!-- Guestbook -->
                 <div class="glass-panel" style="margin-top: 30px; padding: 20px;">
                     <h3 style="text-align: center; margin-bottom: 20px;">Guestbook</h3>
@@ -505,6 +546,7 @@
 
     <script src="js/script.js"></script>
     <script src="js/pop_game.js"></script>
+    <script type="module" src="js/upload.js"></script>
     <script src="https://giscus.app/client.js"
         data-repo="mintrit29/wekii4funk"
         data-repo-id="R_kgDOQUEeRw"

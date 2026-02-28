@@ -823,8 +823,8 @@ body.night-mode .collapsible-trigger:hover {
 }
 
 body.night-mode .reason-btn {
-  background: #9b59b6;
-  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+  background: #9b59b6 !important;
+  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4) !important;
 }
 
 /* Music Player */
@@ -832,8 +832,31 @@ body.night-mode .music-player {
   color: #e0e0e0;
 }
 
-body.night-mode .action-btn {
+body.night-mode .music-info h4,
+body.night-mode .music-info p,
+body.night-mode .time-display {
   color: #e0e0e0;
+}
+
+body.night-mode .action-btn {
+  background-color: #2d2d44;
+  color: #e0e0e0;
+}
+
+body.night-mode .action-btn:hover {
+  box-shadow: 0 4px 10px rgba(155, 89, 182, 0.4);
+}
+
+body.night-mode .action-btn-big {
+  color: #f0c27f;
+}
+
+body.night-mode .progress-container {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.night-mode .progress {
+  background-color: #9b59b6;
 }
 
 /* Toast */
@@ -925,15 +948,25 @@ body.night-mode .heart {
     100% { transform: scale(0) translateY(-50px); opacity: 0; filter: blur(10px); }
 }
 
-/* Night Mode adjustments for Vent Box */
+/* Night Mode adjustments for Vent Box and Upload Form */
 body.night-mode .vent-input {
-    background: rgba(0, 0, 0, 0.3);
-    color: #e0e0e0;
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: #e0e0e0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 body.night-mode .vent-input:focus {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+body.night-mode label.vent-input {
+    border: 2px dashed rgba(155, 89, 182, 0.5) !important;
+    color: #c9a0dc !important;
+}
+
+body.night-mode select.vent-input option {
+    background: #1a1a2e;
+    color: #e0e0e0;
 }
 
 /* Love Question Screen */

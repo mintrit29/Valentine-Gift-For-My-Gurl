@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Environment Variables
+.env
+
+# Backups
+Local_Backup/
+
+# Agent/IDE Specific
+.agent/
+.vscode/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db

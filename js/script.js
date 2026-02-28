@@ -366,37 +366,81 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Tab Filter Logic (optimized)
+  // Tab Filter & Load More Logic (optimized)
   const tabBtns = document.querySelectorAll('.tab-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  
+  let currentFilter = 'all';
+  let currentPage = 1;
+  const itemsPerPage = 9;
+
+  function renderGallery() {
+    requestAnimationFrame(() => {
+      const dynamicGalleryItems = document.querySelectorAll('.gallery-item');
+      let matchedItems = [];
+
+      // Determine matching items
+      dynamicGalleryItems.forEach(item => {
+        const match = currentFilter === 'all' || item.dataset.category === currentFilter;
+        if (match) {
+          matchedItems.push(item);
+        } else {
+          item.style.display = 'none';
+          item.classList.remove('appearing');
+          item.classList.add('hidden'); // Also keep class for fallback/css matches
+        }
+      });
+
+      // Show items for current page
+      const limit = currentPage * itemsPerPage;
+      matchedItems.forEach((item, index) => {
+        if (index < limit) {
+          item.style.display = ''; // Reset display to CSS defined value block/flex/grid
+          item.classList.remove('hidden');
+          item.classList.remove('appearing');
+          void item.offsetWidth; // force reflow
+          item.classList.add('appearing');
+        } else {
+          item.style.display = 'none';
+          item.classList.remove('appearing');
+          item.classList.add('hidden');
+        }
+      });
+
+      // Check if Load More should be shown
+      if (loadMoreBtn) {
+        if (matchedItems.length > limit) {
+          loadMoreBtn.classList.remove('hidden');
+          loadMoreBtn.style.display = 'inline-block';
+        } else {
+          loadMoreBtn.classList.add('hidden');
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  // Initial load
+  renderGallery();
 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Update active button immediately (no delay needed)
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const filter = btn.dataset.filter;
+      currentFilter = btn.dataset.filter;
+      currentPage = 1; // Reset to page 1
 
-      // Batch DOM reads before writes, use rAF to avoid layout thrashing
-      requestAnimationFrame(() => {
-        galleryItems.forEach(item => {
-          const match = filter === 'all' || item.dataset.category === filter;
-
-          if (match) {
-            item.classList.remove('hidden');
-            // Trigger fade-in animation
-            item.classList.remove('appearing');
-            void item.offsetWidth; // force reflow to restart animation
-            item.classList.add('appearing');
-          } else {
-            item.classList.remove('appearing');
-            item.classList.add('hidden');
-          }
-        });
-      });
+      renderGallery();
     });
   });
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+      currentPage++;
+      renderGallery();
+    });
+  }
 
   // === 6. TO-DO LIST ===
   const todoItems = document.querySelectorAll(".todo-item");
